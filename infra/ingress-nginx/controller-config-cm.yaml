@@ -1,0 +1,21 @@
+apiVersion: v1
+data:
+  add-headers: ingress-nginx/security-headers
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: nginx-ingress
+    meta.helm.sh/release-namespace: ingress-nginx
+  creationTimestamp: "2026-02-16T14:01:02Z"
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: nginx-ingress
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/version: 1.14.3
+    helm.sh/chart: ingress-nginx-4.14.3
+  name: nginx-ingress-ingress-nginx-controller
+  namespace: ingress-nginx
+  resourceVersion: "7599"
+  uid: b0a04ef9-6c0a-49f7-8eb5-dd27ac613ba0

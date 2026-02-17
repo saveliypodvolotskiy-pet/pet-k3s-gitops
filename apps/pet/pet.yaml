@@ -1,0 +1,248 @@
+apiVersion: v1
+items:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"mainApp","owner":"Saveliy","stand":"prod"},"name":"selfmadedeployment-nginx","namespace":"pet"},"spec":{"progressDeadlineSeconds":600,"replicas":4,"revisionHistoryLimit":10,"selector":{"matchLabels":{"app":"mainApp"}},"strategy":{"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"},"template":{"metadata":{"labels":{"app":"mainApp"}},"spec":{"containers":[{"image":"koingmassakers/pet-project:myfirstnginx2.0","imagePullPolicy":"IfNotPresent","name":"my-app","ports":[{"containerPort":80,"protocol":"TCP"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","terminationGracePeriodSeconds":30}}}}
+    creationTimestamp: "2026-02-16T14:35:32Z"
+    generation: 1
+    labels:
+      app: mainApp
+      owner: Saveliy
+      stand: prod
+    name: selfmadedeployment-nginx
+    namespace: pet
+    resourceVersion: "9197"
+    uid: dc0999a6-0eac-4f5c-b97b-7502f41ca883
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 4
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: mainApp
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        labels:
+          app: mainApp
+      spec:
+        containers:
+        - image: koingmassakers/pet-project:myfirstnginx2.0
+          imagePullPolicy: IfNotPresent
+          name: my-app
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 4
+    conditions:
+    - lastTransitionTime: "2026-02-16T14:35:32Z"
+      lastUpdateTime: "2026-02-16T14:35:59Z"
+      message: ReplicaSet "selfmadedeployment-nginx-7f569d98c" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2026-02-17T12:21:34Z"
+      lastUpdateTime: "2026-02-17T12:21:34Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    observedGeneration: 1
+    readyReplicas: 4
+    replicas: 4
+    updatedReplicas: 4
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"notMainApp","owner":"Saveliy","stand":"prod"},"name":"selfmadedeployment-tomcat","namespace":"pet"},"spec":{"progressDeadlineSeconds":600,"replicas":4,"revisionHistoryLimit":10,"selector":{"matchLabels":{"app":"notMainApp"}},"strategy":{"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"},"template":{"metadata":{"labels":{"app":"notMainApp"}},"spec":{"containers":[{"image":"tomcat:8.5.38","imagePullPolicy":"IfNotPresent","name":"not-my-app","ports":[{"containerPort":8080,"protocol":"TCP"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","terminationGracePeriodSeconds":30}}}}
+    creationTimestamp: "2026-02-16T14:35:32Z"
+    generation: 1
+    labels:
+      app: notMainApp
+      owner: Saveliy
+      stand: prod
+    name: selfmadedeployment-tomcat
+    namespace: pet
+    resourceVersion: "9192"
+    uid: b15174c7-eaf7-48e3-ab72-921f11b5350e
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 4
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: notMainApp
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        labels:
+          app: notMainApp
+      spec:
+        containers:
+        - image: tomcat:8.5.38
+          imagePullPolicy: IfNotPresent
+          name: not-my-app
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 4
+    conditions:
+    - lastTransitionTime: "2026-02-16T14:35:32Z"
+      lastUpdateTime: "2026-02-16T14:36:22Z"
+      message: ReplicaSet "selfmadedeployment-tomcat-7b847d7586" has successfully
+        progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2026-02-17T12:21:34Z"
+      lastUpdateTime: "2026-02-17T12:21:34Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    observedGeneration: 1
+    readyReplicas: 4
+    replicas: 4
+    updatedReplicas: 4
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"selfmadeservice-nginx","namespace":"pet"},"spec":{"ports":[{"name":"my-app","port":80,"protocol":"TCP","targetPort":80}],"selector":{"app":"mainApp"},"type":"ClusterIP"}}
+    creationTimestamp: "2026-02-16T14:35:32Z"
+    name: selfmadeservice-nginx
+    namespace: pet
+    resourceVersion: "3451"
+    uid: 0d1f5f20-24d2-43f0-81cc-7c73d6b40f5c
+  spec:
+    clusterIP: 10.43.75.90
+    clusterIPs:
+    - 10.43.75.90
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: my-app
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    selector:
+      app: mainApp
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"selfmadeservice-tomcat","namespace":"pet"},"spec":{"ports":[{"name":"not-my-app","port":8080,"protocol":"TCP","targetPort":8080}],"selector":{"app":"notMainApp"},"type":"ClusterIP"}}
+    creationTimestamp: "2026-02-16T14:35:32Z"
+    name: selfmadeservice-tomcat
+    namespace: pet
+    resourceVersion: "3492"
+    uid: 961f9002-aff0-4132-bd0f-b8d1189f6486
+  spec:
+    clusterIP: 10.43.182.210
+    clusterIPs:
+    - 10.43.182.210
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: not-my-app
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      app: notMainApp
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"cert-manager.io/cluster-issuer":"letsencrypt-prod","nginx.ingress.kubernetes.io/ssl-redirect":"true"},"name":"selfmadeingress","namespace":"pet"},"spec":{"ingressClassName":"nginx","rules":[{"host":"nginx.93.77.177.167.nip.io","http":{"paths":[{"backend":{"service":{"name":"selfmadeservice-nginx","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}},{"host":"tomcat.93.77.177.167.nip.io","http":{"paths":[{"backend":{"service":{"name":"selfmadeservice-tomcat","port":{"number":8080}}},"path":"/","pathType":"Prefix"}]}}],"tls":[{"hosts":["nginx.93.77.177.167.nip.io","tomcat.93.77.177.167.nip.io"],"secretName":"pet-tls"}]}}
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    creationTimestamp: "2026-02-16T15:04:03Z"
+    generation: 2
+    name: selfmadeingress
+    namespace: pet
+    resourceVersion: "9220"
+    uid: ac1d893c-3850-4b2c-82a0-e32bdec63567
+  spec:
+    ingressClassName: nginx
+    rules:
+    - host: nginx.93.77.177.167.nip.io
+      http:
+        paths:
+        - backend:
+            service:
+              name: selfmadeservice-nginx
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
+    - host: tomcat.93.77.177.167.nip.io
+      http:
+        paths:
+        - backend:
+            service:
+              name: selfmadeservice-tomcat
+              port:
+                number: 8080
+          path: /
+          pathType: Prefix
+    tls:
+    - hosts:
+      - nginx.93.77.177.167.nip.io
+      - tomcat.93.77.177.167.nip.io
+      secretName: pet-tls
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 10.43.145.139
+kind: List
+metadata:
+  resourceVersion: ""
