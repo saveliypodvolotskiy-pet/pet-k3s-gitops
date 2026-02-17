@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: selfmadeservice-tomcat
+  namespace: pet
+spec:
+  ports:
+    - name: not-my-app
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: notMainApp
+  type: ClusterIP

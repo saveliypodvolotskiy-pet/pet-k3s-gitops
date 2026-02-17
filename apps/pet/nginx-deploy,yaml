@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mainApp
+    owner: Saveliy
+    stand: prod
+  name: selfmadedeployment-nginx
+  namespace: pet
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: mainApp
+  template:
+    metadata:
+      labels:
+        app: mainApp
+    spec:
+      containers:
+        - image: koingmassakers/pet-project:myfirstnginx2.0
+          name: my-app
+          ports:
+            - containerPort: 80
+              protocol: TCP

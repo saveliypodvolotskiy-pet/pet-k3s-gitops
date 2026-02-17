@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  name: selfmadeingress
+  namespace: pet
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: nginx.93.77.177.167.nip.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: selfmadeservice-nginx
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+    - host: tomcat.93.77.177.167.nip.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: selfmadeservice-tomcat
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - nginx.93.77.177.167.nip.io
+        - tomcat.93.77.177.167.nip.io
+      secretName: pet-tls

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: notMainApp
+    owner: Saveliy
+    stand: prod
+  name: selfmadedeployment-tomcat
+  namespace: pet
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: notMainApp
+  template:
+    metadata:
+      labels:
+        app: notMainApp
+    spec:
+      containers:
+        - image: tomcat:8.5.38
+          name: not-my-app
+          ports:
+            - containerPort: 8080
+              protocol: TCP
